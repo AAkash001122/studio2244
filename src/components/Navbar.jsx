@@ -11,7 +11,6 @@ const Navbar = () => {
   return (
     <nav className="w-full bg-[#f8f6f2] shadow-md fixed top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 md:px-16 py-5 flex items-center justify-between">
-        {/* Logo */}
         <Link to="/" className="text-xl font-bold tracking-widest text-black">
           <img
             src="/logo1234.png"
@@ -20,7 +19,6 @@ const Navbar = () => {
           />
         </Link>
 
-        {/* Desktop Menu */}
         <div className="hidden md:flex gap-8 items-center">
           <Link to="/new-movie" className={navLink}>
             Capabilities
@@ -33,7 +31,6 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Desktop Login Button */}
         <div className="hidden md:block">
           <Link to="/login">
             <button className="px-5 py-2 text-sm border border-black rounded-full hover:bg-black hover:text-white transition duration-300">
@@ -42,7 +39,6 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Mobile Toggle */}
         <div className="md:hidden">
           <button onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X size={26} /> : <Menu size={26} />}
@@ -50,35 +46,15 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden bg-[#f8f6f2] px-6 pb-6 pt-4 space-y-4 text-center font-medium shadow-lg">
-          <Link
-            to="/"
-            onClick={() => setIsOpen(false)}
-            className="block hover:text-gray-600 transition"
-          >
-            Home
+          <Link to="/new-movie" className={navLink}>
+            Capabilities
           </Link>
-          <Link
-            to="/new-movie"
-            onClick={() => setIsOpen(false)}
-            className="block hover:text-gray-600 transition"
-          >
-            New Movie
-          </Link>
-          <Link
-            to="/about"
-            onClick={() => setIsOpen(false)}
-            className="block hover:text-gray-600 transition"
-          >
+          <Link to="/about" className={navLink}>
             About
           </Link>
-          <Link
-            to="/contact"
-            onClick={() => setIsOpen(false)}
-            className="block hover:text-gray-600 transition"
-          >
+          <Link to="/contact" className={navLink}>
             Contact
           </Link>
 
