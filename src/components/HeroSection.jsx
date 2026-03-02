@@ -86,7 +86,7 @@ const TestimonialSection = () => {
       {/* Testimonial and Google rating */}
       <div className="flex flex-col md:flex-row items-center md:items-start justify-between max-w-5xl mx-auto gap-12">
         {/* Testimonial text */}
-        <p className="text-black max-w-xl text-base md:text-lg font-normal leading-relaxed">
+        <p className="text-black max-w-xl text-base md:text-lg font-normal leading-relaxed tracking-wide font-['Inter']">
           WhiteMarble have been incredibly helpful and supportive on all the
           projects we have worked on together. The team are all very friendly
           and professional, I would highly recommend them for anyone looking for
@@ -160,26 +160,29 @@ const HeroSection = () => {
         <div className="relative z-10 flex items-center h-full px-6 md:px-16">
           <div className="max-w-5xl">
             <h1
-              className="text-white font-extrabold leading-[1.1]
-               text-2xl sm:text-3xl md:text-5xl lg:text-6xl max-w-4xl mt-24"
+              className="text-white font-semibold leading-[1.15]
+      text-3xl sm:text-4xl md:text-5xl lg:text-6xl 
+      max-w-4xl mt-24 tracking-tight"
             >
               Looking for a India Rated Production House that can drive better
               <br />
               brand awareness to your business?
             </h1>
 
-            <p className="text-gray-300 mt-6 text-sm sm:text-base md:text-lg max-w-3xl">
-              Look no further, we’re WhiteMarble, a fearless creative team of
-              thinkers, writers, designers, technologists and doers. We work
-              with businesses and in-house teams to do better.
+            <p className="text-gray-300 mt-6 text-base md:text-lg max-w-3xl leading-relaxed font-light">
+              Look no further, we’re WhiteMarble — a fearless creative team of
+              thinkers, writers, designers, technologists and doers. We
+              collaborate with ambitious businesses and in-house teams to create
+              meaningful, high-impact brand experiences.
             </p>
 
             <button
               onClick={() => navigate("/look")}
-              className=" px-8 py-4 rounded-full 
-             bg-white text-Black 
-             hover:bg-Gray hover:text-black 
-             transition duration-300"
+              className="mt-8 px-8 py-3 rounded-full 
+      bg-white text-black 
+      text-sm md:text-base font-medium 
+      hover:bg-gray-200 
+      transition-all duration-300"
             >
               Change me
             </button>
@@ -194,12 +197,12 @@ const HeroSection = () => {
           Why choose us
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
           <div>
-            <h3 className="font-bold text-xl md:text-2xl mb-3 text-black">
+            <h3 className="font-semibold text-xl md:text-2xl mb-4 text-black tracking-tight">
               WHO ARE WE?
             </h3>
-            <p className="text-base md:text-lg max-w-sm text-black/90 leading-relaxed">
+            <p className="text-base md:text-lg max-w-sm text-black/80 leading-[1.8] font-light">
               WHITE MARBLE PRODUCTION is a film and advertising production house
               focused on cinematic storytelling and disciplined execution. With
               experience across 100+ advertising films, we collaborate closely
@@ -209,10 +212,10 @@ const HeroSection = () => {
           </div>
 
           <div>
-            <h3 className="font-bold text-xl md:text-2xl mb-3 text-black">
+            <h3 className="font-semibold text-xl md:text-2xl mb-4 text-black tracking-tight">
               Advertising Films
             </h3>
-            <p className="text-base md:text-lg max-w-sm text-black/90 leading-relaxed">
+            <p className="text-base md:text-lg max-w-sm text-black/80 leading-[1.8] font-light">
               We produce high-end commercial films for television, digital
               platforms, and large-scale advertising campaigns. Each production
               is executed with structured planning, cinematic quality, and
@@ -222,10 +225,10 @@ const HeroSection = () => {
           </div>
 
           <div>
-            <h3 className="font-bold text-xl md:text-2xl mb-3 text-black">
+            <h3 className="font-semibold text-xl md:text-2xl mb-4 text-black tracking-tight">
               Production Track Record
             </h3>
-            <p className="text-base md:text-lg max-w-sm text-black/90 leading-relaxed">
+            <p className="text-base md:text-lg max-w-sm text-black/80 leading-[1.8] font-light">
               Over 100+ advertising films successfully executed across 17+
               states in India, managing multi-location and large-scale campaigns
               with zero budget overruns. Our production culture is built on

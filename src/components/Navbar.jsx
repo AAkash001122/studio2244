@@ -26,7 +26,7 @@ const Navbar = () => {
           </div>
         </Link>
 
-        {/* Desktop Menu */}
+        
         <div className="hidden md:flex gap-8 items-center">
           <Link
             to="/new-movie"
