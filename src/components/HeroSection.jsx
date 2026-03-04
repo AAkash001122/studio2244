@@ -140,55 +140,58 @@ const HeroSection = () => {
   const navigate = useNavigate();
   return (
     <>
-      <section className="relative w-full h-screen overflow-hidden mb-3">
-        {videos.map((video, index) => (
-          <video
-            key={index}
-            src={video}
-            autoPlay
-            muted
-            loop
-            playsInline
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-              index === currentVideo ? "opacity-100" : "opacity-0"
-            }`}
-          />
-        ))}
 
-        <div className="absolute inset-0 bg-black/60"></div>
+      <section className="relative w-full min-h-screen mb-3">
+  {videos.map((video, index) => (
+    <video
+      key={index}
+      src={video}
+      autoPlay
+      muted
+      loop
+      playsInline
+      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+        index === currentVideo ? "opacity-100" : "opacity-0"
+      }`}
+    />
+  ))}
 
-        <div className="relative z-10 flex items-center h-full px-6 md:px-16">
-          <div className="max-w-5xl">
-            <h1
-              className="text-white font-semibold leading-[1.15]
-      text-3xl sm:text-4xl md:text-5xl lg:text-6xl 
-      max-w-4xl mt-24 tracking-tight"
-            >
-              Looking for a India Rated Production House that can drive better
-              <br />
-              brand awareness to your business?
-            </h1>
+  {/* Dark Overlay */}
+  <div className="absolute inset-0 bg-black/60"></div>
 
-            <p className="text-gray-300 mt-6 text-base md:text-lg max-w-3xl leading-relaxed font-light">
-              Look no further, we’re WhiteMarble — a fearless creative team of
-              thinkers, writers, designers, technologists and doers. We
-              collaborate with ambitious businesses and in-house teams to create
-              meaningful, high-impact brand experiences.
-            </p>
+  {/* Content */}
+  <div className="relative z-10 flex items-center min-h-screen px-6 md:px-16">
+    <div className="max-w-5xl">
+      <h1
+        className="text-white font-semibold leading-[1.15]
+        text-3xl sm:text-4xl md:text-5xl lg:text-6xl 
+        max-w-4xl tracking-tight"
+      >
+        Looking for a India Rated Production House that can drive better
+        <br />
+       
+      </h1>
 
-            <button
-              onClick={() => navigate("/look")}
-              className="mt-8 px-8 py-3 rounded-full 
-      bg-white text-black 
-      text-sm md:text-base font-medium 
-      hover:bg-gray-200 
-      transition-all duration-300"
-            >
-              Change me
-            </button>
-          </div>
-        </div>
-      </section>
+      <p className="text-gray-300 mt-6 text-base md:text-lg max-w-3xl leading-relaxed font-light">
+        Look no further, we’re WhiteMarble — a fearless creative team of
+        thinkers, writers, designers, technologists and doers. We
+        collaborate with ambitious businesses and in-house teams to create
+        meaningful, high-impact brand experiences.
+      </p>
+
+      <button
+        onClick={() => navigate("/look")}
+        className="mt-6 px-8 py-3 rounded-full 
+        bg-white text-black 
+        text-sm md:text-base font-medium 
+        hover:bg-gray-200 
+        transition-all duration-300"
+      >
+        Change me
+      </button>
+    </div>
+  </div>
+</section>
 
       <TestimonialSection />
 
