@@ -19,8 +19,8 @@ const FooterWithCTA = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.15 }
-    }
+      transition: { staggerChildren: 0.15 },
+    },
   };
 
   const itemVariants = {
@@ -28,8 +28,8 @@ const FooterWithCTA = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
   };
 
   return (
@@ -42,7 +42,6 @@ const FooterWithCTA = () => {
       <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-red-100 rounded-full blur-[100px] opacity-40 pointer-events-none"></div>
 
       <div className="max-w-[1280px] mx-auto px-6 md:px-16 relative z-10">
-        
         {/* Top Grid with Staggered Animation */}
         <motion.div
           variants={containerVariants}
@@ -55,9 +54,9 @@ const FooterWithCTA = () => {
             {/* Logo Container */}
             <div className="h-16 md:h-20 w-auto overflow-hidden">
               <img
-                src="/logowm.png"
+                src="/wmlogo2244.png"
                 alt="WhiteMarble Production"
-                className="h-full w-48 md:w-56 object-contain"
+                className="h-full w-48 md:w-56 object-cover"
               />
             </div>
 
@@ -97,16 +96,18 @@ const FooterWithCTA = () => {
               Navigation
             </h3>
             <ul className="space-y-3">
-              {['Home', 'Work', 'About Us', 'Process', 'Contact'].map((link) => (
-                <li key={link}>
-                  <a
-                    href={`/${link.toLowerCase().replace(' ', '')}`}
-                    className="font-sans text-gray-600 text-sm hover:text-red-600 transition-colors inline-block hover:translate-x-1 transform duration-200"
-                  >
-                    {link}
-                  </a>
-                </li>
-              ))}
+              {["Home", "Work", "About Us", "Process", "Contact"].map(
+                (link) => (
+                  <li key={link}>
+                    <a
+                      href={`/${link.toLowerCase().replace(" ", "")}`}
+                      className="font-sans text-gray-600 text-sm hover:text-red-600 transition-colors inline-block hover:translate-x-1 transform duration-200"
+                    >
+                      {link}
+                    </a>
+                  </li>
+                ),
+              )}
             </ul>
           </motion.div>
 
@@ -116,7 +117,12 @@ const FooterWithCTA = () => {
               Capabilities
             </h3>
             <ul className="space-y-3">
-              {['Advertising Films', 'Branded Stories', 'Original Content', 'Production Services'].map((service) => (
+              {[
+                "Advertising Films",
+                "Branded Stories",
+                "Original Content",
+                "Production Services",
+              ].map((service) => (
                 <li key={service}>
                   <span className="font-sans text-gray-600 text-sm">
                     {service}
@@ -163,7 +169,7 @@ const FooterWithCTA = () => {
         </motion.div>
 
         {/* Bottom Section: Copyright Bar */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.8 }}

@@ -18,32 +18,29 @@ import {
   Linkedin,
   Twitter,
 } from "lucide-react";
+import { Link } from "react-router-dom"; // ✅ Added Link import
 
 // ==========================================
 // ULTRA SCROLL WRAPPER COMPONENT
-// Yeh component har section par lagega jo scale aur blur effect dega
 // ==========================================
 const ScrollSection = ({ children, zIndex, bgColor = "#FAFAF9" }) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "start start"], // Jab section screen par aaye to animation start ho
+    offset: ["start end", "start start"],
   });
 
-  // Smooth Spring Animation for Ultra Feel
-  const scaleProgress = useTransform(scrollYProgress, [0, 1], [0.8, 1]); // 0.8 se 1 tak bada hoga
-  const opacityProgress = useTransform(scrollYProgress, [0, 1], [0.3, 1]); // Faint se clear
-  const blurProgress = useTransform(scrollYProgress, [0, 1], [8, 0]); // Blur se sharp
-  const yProgress = useTransform(scrollYProgress, [0, 1], [100, 0]); // Neeche se upar aayega
+  const scaleProgress = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
+  const opacityProgress = useTransform(scrollYProgress, [0, 1], [0.3, 1]);
+  const blurProgress = useTransform(scrollYProgress, [0, 1], [8, 0]);
+  const yProgress = useTransform(scrollYProgress, [0, 1], [100, 0]);
 
-  // Spring config for smoothness
   const scale = useSpring(scaleProgress, { stiffness: 100, damping: 30 });
   const opacity = useSpring(opacityProgress, { stiffness: 100, damping: 30 });
   const y = useSpring(yProgress, { stiffness: 100, damping: 30 });
 
   return (
     <div ref={ref} className="relative w-full" style={{ zIndex: zIndex }}>
-      {/* Sticky Container - Screen pe chipka rahega */}
       <motion.div
         style={{
           scale: scale,
@@ -53,11 +50,11 @@ const ScrollSection = ({ children, zIndex, bgColor = "#FAFAF9" }) => {
           backgroundColor: bgColor,
           position: "sticky",
           top: 0,
-          minHeight: "100vh", // Full screen height
+          minHeight: "100vh",
           width: "100%",
-          overflow: "hidden", // Content hide nahi hoga, bas section full screen hoga
+          overflow: "hidden",
         }}
-        className="rounded-t-[2rem] overflow-hidden shadow-2xl" // Rounded top for stacked look
+        className="rounded-t-[2rem] overflow-hidden shadow-2xl"
       >
         <div className="w-full h-full overflow-y-auto">{children}</div>
       </motion.div>
@@ -81,9 +78,14 @@ const HeroTopSection = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="w-full max-w-[1280px] mx-auto px-6 py-8 flex justify-between items-center relative z-50"
       >
-        <div className="text-2xl font-serif font-bold tracking-tighter ">
-          WhiteMarble <span className="text-red-600">.</span>
-        </div>
+        {/* ✅ Updated: Replaced text with Logo Image */}
+        <Link to="/" className="block">
+          <img
+            src="/wmlogo2244.png"
+            alt="WhiteMarble Logo"
+            className="h-14 w-42 object-cover"
+          />
+        </Link>
       </motion.nav>
 
       <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -108,8 +110,8 @@ const HeroTopSection = () => {
             transition={{ delay: 0.6 }}
             className="text-5xl lg:text-[3.5rem] font-serif font-bold leading-[1.1] tracking-tight"
           >
-            Revenue Oriented <br />
-            <span className="text-red-600">Creative Agency</span>
+            White Marble <br />
+            <span className="text-red-600">Film Production.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
@@ -126,12 +128,21 @@ const HeroTopSection = () => {
             transition={{ delay: 1.0 }}
             className="flex flex-wrap gap-4 pt-4"
           >
-            <button className="bg-black text-white px-10 py-4 rounded-full font-bold text-sm tracking-wide hover:bg-red-600 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              AGENCY REEL
-            </button>
-            <button className="bg-transparent border-2 border-black px-10 py-4 rounded-full font-bold text-sm tracking-wide hover:bg-black hover:text-white transition-all duration-300">
+            {/* ✅ Updated: Ads Video Button -> Links to /work */}
+            <Link
+              to="/work"
+              className="bg-black text-white px-10 py-4 rounded-full font-bold text-sm tracking-wide hover:bg-red-600 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-center"
+            >
+              Ads Video
+            </Link>
+
+            {/* ✅ Updated: Know More Button -> Links to /services */}
+            <Link
+              to="/services"
+              className="bg-transparent border-2 border-black px-10 py-4 rounded-full font-bold text-sm tracking-wide hover:bg-black hover:text-white transition-all duration-300 text-center"
+            >
               KNOW MORE
-            </button>
+            </Link>
           </motion.div>
         </motion.div>
 
@@ -165,13 +176,7 @@ const HeroTopSection = () => {
             <div className="flex justify-center mb-2 text-yellow-400 text-lg">
               ★★★★★
             </div>
-            <h3 className="text-sm font-bold leading-snug">
-              Clutch Top
-              <br />
-              Creative Agency
-              <br />
-              India 2026
-            </h3>
+            <h3 className="text-sm font-bold leading-snug">White Marble</h3>
           </motion.div>
 
           <motion.div
@@ -425,7 +430,12 @@ const CTASection = () => {
           Let’s create something <br className="hidden md:block" />
           <span className="text-red-600 italic">cinematic.</span>
         </h2>
-        <button className="group relative px-12 py-5 bg-red-600 text-white text-lg font-bold rounded-full border-2 border-black overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-[8px_8px_0px_#000] shadow-[6px_6px_0px_#000]">
+
+        {/* ✅ Updated: Changed button to Link for navigation */}
+        <Link
+          to="/contact"
+          className="group relative inline-block px-12 py-5 bg-red-600 text-white text-lg font-bold rounded-full border-2 border-black overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-[8px_8px_0px_#000] shadow-[6px_6px_0px_#000] cursor-pointer"
+        >
           <span className="relative z-10 flex items-center justify-center gap-3">
             Contact Us{" "}
             <ArrowRight
@@ -434,7 +444,7 @@ const CTASection = () => {
             />
           </span>
           <div className="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out skew-y-12 z-0"></div>
-        </button>
+        </Link>
       </div>
     </section>
   );
@@ -489,36 +499,36 @@ const FooterWithCTA = () => {
             </h3>
             <ul className="space-y-3">
               <li>
-                <a
-                  href="/"
+                <Link
+                  to="/"
                   className="font-sans text-gray-400 text-sm hover:text-red-600 transition-colors"
                 >
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/work"
+                <Link
+                  to="/work"
                   className="font-sans text-gray-400 text-sm hover:text-red-600 transition-colors"
                 >
                   Work
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/about"
+                <Link
+                  to="/about"
                   className="font-sans text-gray-400 text-sm hover:text-red-600 transition-colors"
                 >
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/contact"
+                <Link
+                  to="/contact"
                   className="font-sans text-gray-400 text-sm hover:text-red-600 transition-colors"
                 >
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -606,25 +616,20 @@ const FooterWithCTA = () => {
 const HeroSection = () => {
   return (
     <div className="bg-[#FAFAF9] text-[#1a1a1a] font-sans overflow-x-hidden selection:bg-black selection:text-white">
-      {/* SECTION 1: HERO - Pehle section ko stack nahi karna, wo base rahega */}
       <HeroTopSection />
 
-      {/* SECTION 2: WORK - Ultra Scroll Effect */}
       <ScrollSection zIndex={10} bgColor="#FAFAF9">
         <SelectedWorkSection />
       </ScrollSection>
 
-      {/* SECTION 3: TESTIMONIALS - Ultra Scroll Effect */}
       <ScrollSection zIndex={20} bgColor="#FFFFFF">
         <TestimonialsSection />
       </ScrollSection>
 
-      {/* SECTION 4: CTA - Ultra Scroll Effect */}
       <ScrollSection zIndex={30} bgColor="#FAFAF9">
         <CTASection />
       </ScrollSection>
 
-      {/* SECTION 5: FOOTER - Ultra Scroll Effect */}
       <ScrollSection zIndex={40} bgColor="#1a1a1a">
         <FooterWithCTA />
       </ScrollSection>
