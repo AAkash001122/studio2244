@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import Contact from "./pages/Contact";
 import Work from "./pages/Work";
 import About from "./pages/About";
-import Progress from "./pages/progress"; // Naya wala services page
+import Progress from "./pages/Progress"; // Naya wala services page
 import Clients from "./pages/Clients";
 
 function App() {
