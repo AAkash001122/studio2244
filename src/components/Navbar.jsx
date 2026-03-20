@@ -118,7 +118,7 @@ const Navbar = () => {
                   Address
                 </h4>
                 <p className="text-sm font-medium text-black leading-tight">
-                  Mumbai, Maharashtra
+                  129, kartik building, next to kuber building Opposite to Lakshmi Industry Andheri west Mumbai, Maharashtra 400065
                 </p>
               </div>
 
@@ -130,7 +130,7 @@ const Navbar = () => {
                   href="mailto:hello@agency.com"
                   className="text-sm font-medium text-black hover:text-red-600 transition-colors"
                 >
-                  hello@agency.com
+                  whitemarbleproduction@gmail.com
                 </a>
               </div>
 

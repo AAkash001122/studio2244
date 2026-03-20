@@ -18,7 +18,7 @@ import {
   Linkedin,
   Twitter,
 } from "lucide-react";
-import { Link } from "react-router-dom"; // ✅ Added Link import
+import { Link } from "react-router-dom";
 
 // ==========================================
 // ULTRA SCROLL WRAPPER COMPONENT
@@ -78,7 +78,6 @@ const HeroTopSection = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="w-full max-w-[1280px] mx-auto px-6 py-8 flex justify-between items-center relative z-50"
       >
-        {/* ✅ Updated: Replaced text with Logo Image */}
         <Link to="/" className="block">
           <img
             src="/wmlogo2244.png"
@@ -104,11 +103,12 @@ const HeroTopSection = () => {
           >
             Since 2015 • Mumbai
           </motion.div>
+          {/* ✅ FIXED: Added leading-tight and pb-2 to fix y/g clipping */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="text-5xl lg:text-[3.5rem] font-serif font-bold leading-[1.1] tracking-tight"
+            className="text-5xl lg:text-[3.5rem] font-serif font-bold leading-tight tracking-tight pb-2"
           >
             White Marble <br />
             <span className="text-red-600">Film Production.</span>
@@ -128,15 +128,12 @@ const HeroTopSection = () => {
             transition={{ delay: 1.0 }}
             className="flex flex-wrap gap-4 pt-4"
           >
-            {/* ✅ Updated: Ads Video Button -> Links to /work */}
             <Link
               to="/work"
               className="bg-black text-white px-10 py-4 rounded-full font-bold text-sm tracking-wide hover:bg-red-600 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-center"
             >
               Ads Video
             </Link>
-
-            {/* ✅ Updated: Know More Button -> Links to /services */}
             <Link
               to="/services"
               className="bg-transparent border-2 border-black px-10 py-4 rounded-full font-bold text-sm tracking-wide hover:bg-black hover:text-white transition-all duration-300 text-center"
@@ -430,8 +427,6 @@ const CTASection = () => {
           Let’s create something <br className="hidden md:block" />
           <span className="text-red-600 italic">cinematic.</span>
         </h2>
-
-        {/* ✅ Updated: Changed button to Link for navigation */}
         <Link
           to="/contact"
           className="group relative inline-block px-12 py-5 bg-red-600 text-white text-lg font-bold rounded-full border-2 border-black overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-[8px_8px_0px_#000] shadow-[6px_6px_0px_#000] cursor-pointer"
@@ -451,23 +446,25 @@ const CTASection = () => {
 };
 
 // ==========================================
-// 5. FOOTER
+// 5. FOOTER (UPDATED TO WHITE THEME)
 // ==========================================
 const FooterWithCTA = () => {
   return (
-    <footer className="bg-[#1a1a1a] border-t-2 border-black pt-20 pb-10 relative overflow-hidden">
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-red-900 rounded-full blur-[100px] opacity-20 pointer-events-none"></div>
-      <div className="max-w-[1280px] mx-auto px-6 md:px-16 relative z-10 text-white">
+    <footer className="bg-white border-t-2 border-black pt-20 pb-10 relative overflow-hidden">
+      {/* Lighter decoration for white background */}
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-red-100 rounded-full blur-[100px] opacity-60 pointer-events-none"></div>
+
+      <div className="max-w-[1280px] mx-auto px-6 md:px-16 relative z-10 text-black">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="space-y-6">
             <div className="h-16 md:h-20 w-auto overflow-hidden">
               <img
-                src="/logowm.png"
+                src="/wmlogo2244.png"
                 alt="WhiteMarble Production"
                 className="h-full w-48 md:w-56 object-contain"
               />
             </div>
-            <p className="font-sans text-gray-400 text-sm leading-relaxed">
+            <p className="font-sans text-gray-600 text-sm leading-relaxed">
               A fearless creative team of thinkers, writers, and doers.
             </p>
             <div className="flex gap-4">
@@ -475,33 +472,33 @@ const FooterWithCTA = () => {
                 href="https://www.instagram.com/whitemarbleproduction_"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full border-2 border-white/20 flex items-center justify-center text-white hover:text-black hover:bg-red-600 hover:border-red-600 transition-all duration-300"
+                className="w-10 h-10 rounded-full border-2 border-black/10 flex items-center justify-center text-gray-600 hover:text-white hover:bg-red-600 hover:border-red-600 transition-all duration-300"
               >
                 <Instagram size={18} />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 rounded-full border-2 border-white/20 flex items-center justify-center text-white hover:text-black hover:bg-red-600 hover:border-red-600 transition-all duration-300"
+                className="w-10 h-10 rounded-full border-2 border-black/10 flex items-center justify-center text-gray-600 hover:text-white hover:bg-red-600 hover:border-red-600 transition-all duration-300"
               >
                 <Linkedin size={18} />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 rounded-full border-2 border-white/20 flex items-center justify-center text-white hover:text-black hover:bg-red-600 hover:border-red-600 transition-all duration-300"
+                className="w-10 h-10 rounded-full border-2 border-black/10 flex items-center justify-center text-gray-600 hover:text-white hover:bg-red-600 hover:border-red-600 transition-all duration-300"
               >
                 <Twitter size={18} />
               </a>
             </div>
           </div>
           <div>
-            <h3 className="font-serif text-white text-lg font-bold mb-6">
+            <h3 className="font-serif text-black text-lg font-bold mb-6">
               Navigation
             </h3>
             <ul className="space-y-3">
               <li>
                 <Link
                   to="/"
-                  className="font-sans text-gray-400 text-sm hover:text-red-600 transition-colors"
+                  className="font-sans text-gray-600 text-sm hover:text-red-600 transition-colors"
                 >
                   Home
                 </Link>
@@ -509,7 +506,7 @@ const FooterWithCTA = () => {
               <li>
                 <Link
                   to="/work"
-                  className="font-sans text-gray-400 text-sm hover:text-red-600 transition-colors"
+                  className="font-sans text-gray-600 text-sm hover:text-red-600 transition-colors"
                 >
                   Work
                 </Link>
@@ -517,7 +514,7 @@ const FooterWithCTA = () => {
               <li>
                 <Link
                   to="/about"
-                  className="font-sans text-gray-400 text-sm hover:text-red-600 transition-colors"
+                  className="font-sans text-gray-600 text-sm hover:text-red-600 transition-colors"
                 >
                   About Us
                 </Link>
@@ -525,7 +522,7 @@ const FooterWithCTA = () => {
               <li>
                 <Link
                   to="/contact"
-                  className="font-sans text-gray-400 text-sm hover:text-red-600 transition-colors"
+                  className="font-sans text-gray-600 text-sm hover:text-red-600 transition-colors"
                 >
                   Contact
                 </Link>
@@ -533,35 +530,35 @@ const FooterWithCTA = () => {
             </ul>
           </div>
           <div>
-            <h3 className="font-serif text-white text-lg font-bold mb-6">
+            <h3 className="font-serif text-black text-lg font-bold mb-6">
               Capabilities
             </h3>
             <ul className="space-y-3">
               <li>
-                <span className="font-sans text-gray-400 text-sm">
+                <span className="font-sans text-gray-600 text-sm">
                   Advertising Films
                 </span>
               </li>
               <li>
-                <span className="font-sans text-gray-400 text-sm">
+                <span className="font-sans text-gray-600 text-sm">
                   Branded Stories
                 </span>
               </li>
               <li>
-                <span className="font-sans text-gray-400 text-sm">
+                <span className="font-sans text-gray-600 text-sm">
                   Original Content
                 </span>
               </li>
             </ul>
           </div>
           <div>
-            <h3 className="font-serif text-white text-lg font-bold mb-6">
+            <h3 className="font-serif text-black text-lg font-bold mb-6">
               Get in Touch
             </h3>
             <ul className="space-y-5">
               <li className="flex items-start gap-3">
                 <MapPin className="text-red-600 shrink-0 mt-1" size={18} />
-                <span className="font-sans text-gray-400 text-sm">
+                <span className="font-sans text-gray-600 text-sm">
                   Mumbai, Maharashtra
                 </span>
               </li>
@@ -569,7 +566,7 @@ const FooterWithCTA = () => {
                 <Mail className="text-red-600 shrink-0" size={18} />
                 <a
                   href="mailto:whitemarbleproduction@gmail.com"
-                  className="font-sans text-gray-400 text-sm hover:text-white transition-colors"
+                  className="font-sans text-gray-600 text-sm hover:text-black transition-colors"
                 >
                   whitemarbleproduction@gmail.com
                 </a>
@@ -578,7 +575,7 @@ const FooterWithCTA = () => {
                 <Phone className="text-red-600 shrink-0" size={18} />
                 <a
                   href="tel:+917903606342"
-                  className="font-sans text-gray-400 text-sm hover:text-white transition-colors"
+                  className="font-sans text-gray-600 text-sm hover:text-black transition-colors"
                 >
                   +917903606342
                 </a>
@@ -586,20 +583,20 @@ const FooterWithCTA = () => {
             </ul>
           </div>
         </div>
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="border-t border-black/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="font-sans text-gray-500 text-xs">
             © 2026 White Marble Production.
           </p>
           <div className="flex gap-6">
             <a
               href="#"
-              className="font-sans text-gray-500 text-xs hover:text-white"
+              className="font-sans text-gray-500 text-xs hover:text-black"
             >
               Privacy
             </a>
             <a
               href="#"
-              className="font-sans text-gray-500 text-xs hover:text-white"
+              className="font-sans text-gray-500 text-xs hover:text-black"
             >
               Terms
             </a>
@@ -630,7 +627,8 @@ const HeroSection = () => {
         <CTASection />
       </ScrollSection>
 
-      <ScrollSection zIndex={40} bgColor="#1a1a1a">
+      {/* Footer Section Background adjusted to match white theme */}
+      <ScrollSection zIndex={40} bgColor="#FFFFFF">
         <FooterWithCTA />
       </ScrollSection>
     </div>
