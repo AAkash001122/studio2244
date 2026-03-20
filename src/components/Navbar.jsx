@@ -7,7 +7,6 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Corrected Syntax Here
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -16,7 +15,15 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Animation Variants
+  // Body scroll lock
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isOpen]);
+
   const menuVariants = {
     hidden: { x: "100%", opacity: 0 },
     visible: {
@@ -48,61 +55,18 @@ const Navbar = () => {
 
   return (
     <>
-      {/* --- MAIN NAVBAR --- */}
+      {/* --- 1. NAVBAR (Background & Logo) --- */}
+      {/* Z-Index: 40. Logo yahan hai. */}
       <nav
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 ${
           scrolled || isOpen
             ? "bg-white border-b-2 border-black shadow-[0_4px_0px_#000] py-4"
             : "bg-transparent py-6"
         }`}
-      >
-        <div className="max-w-[1280px] mx-auto px-6 md:px-16 flex items-center justify-between">
-          {/* Logo */}
-          <Link
-            to="/"
-            onClick={() => setIsOpen(false)}
-            className="relative z-50"
-          >
-            <motion.div whileHover={{ scale: 1.05 }} className="h-12 md:h-16">
-              {/* <img src="/logowm.png" alt="Logo" className="h-full w-auto object-contain" /> */}
-            </motion.div>
-          </Link>
+      ></nav>
 
-          {/* --- UNIVERSAL MENU BUTTON (Desktop & Mobile) --- */}
-          <div className="z-50">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="w-12 h-12 rounded-full border-2 border-black flex flex-col items-center justify-center gap-1.5 hover:bg-black group transition-all duration-300 shadow-[4px_4px_0px_#000]"
-            >
-              {/* Line 1 */}
-              <motion.span
-                animate={
-                  isOpen
-                    ? { rotate: 45, y: 6, backgroundColor: "white" }
-                    : { rotate: 0, y: 0, backgroundColor: "black" }
-                }
-                className="w-5 h-0.5 bg-black block group-hover:bg-white transition-colors"
-              ></motion.span>
-              {/* Line 2 */}
-              <motion.span
-                animate={isOpen ? { opacity: 0, x: -10 } : { opacity: 1, x: 0 }}
-                className="w-5 h-0.5 bg-black block group-hover:bg-white transition-colors"
-              ></motion.span>
-              {/* Line 3 */}
-              <motion.span
-                animate={
-                  isOpen
-                    ? { rotate: -45, y: -6, backgroundColor: "white" }
-                    : { rotate: 0, y: 0, backgroundColor: "black" }
-                }
-                className="w-5 h-0.5 bg-black block group-hover:bg-white transition-colors"
-              ></motion.span>
-            </button>
-          </div>
-        </div>
-      </nav>
-
-      {/* --- FULL SCREEN MENU --- */}
+      {/* --- 2. FULL SCREEN MENU --- */}
+      {/* Z-Index: 50. Navbar ke upar aayega. */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -110,7 +74,7 @@ const Navbar = () => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed inset-0 z-40 bg-[#FAFAF9] flex flex-col justify-between overflow-hidden border-l-4 border-black"
+            className="fixed inset-0 z-50 bg-[#FAFAF9] flex flex-col justify-between overflow-hidden border-l-4 border-black"
           >
             {/* Background Decoration */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-red-100 rounded-full blur-[120px] opacity-50 pointer-events-none"></div>
@@ -149,7 +113,6 @@ const Navbar = () => {
               variants={linkVariants}
               className="border-t-2 border-black p-8 grid grid-cols-3 gap-4 bg-white"
             >
-              {/* Address */}
               <div className="space-y-2">
                 <h4 className="text-xs font-bold uppercase text-gray-500 tracking-wider">
                   Address
@@ -159,7 +122,6 @@ const Navbar = () => {
                 </p>
               </div>
 
-              {/* Email */}
               <div className="space-y-2">
                 <h4 className="text-xs font-bold uppercase text-gray-500 tracking-wider">
                   Email
@@ -172,7 +134,6 @@ const Navbar = () => {
                 </a>
               </div>
 
-              {/* Socials */}
               <div className="flex gap-3 justify-end items-center">
                 <a
                   href="#"
@@ -197,6 +158,42 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* --- 3. UNIVERSAL BUTTON (Independent Layer) --- */}
+      {/* Z-Index: 9999. Sabse upar rahega. Navbar ya Menu isse chhupa nahi paayega. */}
+      <div
+        className={`fixed top-0 right-0 z-[9999] transition-colors duration-500 p-6 md:p-16 ${scrolled || isOpen ? "bg-white/0" : "bg-transparent"}`}
+      >
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="w-12 h-12 rounded-full border-2 border-black flex flex-col items-center justify-center gap-1.5 hover:bg-black group transition-all duration-300 shadow-[4px_4px_0px_#000]"
+          // Background taaki button ke peeche ka content scroll karne par na dikhe (agar navbar white ho toh)
+          style={{
+            backgroundColor: scrolled || isOpen ? "#ffffff" : "transparent",
+          }}
+        >
+          <motion.span
+            animate={
+              isOpen
+                ? { rotate: 45, y: 6, backgroundColor: "white" }
+                : { rotate: 0, y: 0, backgroundColor: "black" }
+            }
+            className="w-5 h-0.5 bg-black block group-hover:bg-white transition-colors"
+          ></motion.span>
+          <motion.span
+            animate={isOpen ? { opacity: 0, x: -10 } : { opacity: 1, x: 0 }}
+            className="w-5 h-0.5 bg-black block group-hover:bg-white transition-colors"
+          ></motion.span>
+          <motion.span
+            animate={
+              isOpen
+                ? { rotate: -45, y: -6, backgroundColor: "white" }
+                : { rotate: 0, y: 0, backgroundColor: "black" }
+            }
+            className="w-5 h-0.5 bg-black block group-hover:bg-white transition-colors"
+          ></motion.span>
+        </button>
+      </div>
     </>
   );
 };
